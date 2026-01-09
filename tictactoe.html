@@ -38,33 +38,28 @@ ${board[6]} | ${board[7]} | ${board[8]}
         board[position] = currentPlayer;
     }
 
-
-    // function to check Winner-----------NOT WORK!
-    // function checkWin() {
-    //     for (const pattern of winPattern) {
-    //         [a, b, c] = pattern
-    //     }
-    //     if (
-    //         board[a] === board[b] === board[c]
-    //     ) {
-    //         return 'Winner'
-    //     } else {
-    //         null;
-    //     }
-    // }
-
-    function iterate(){
+    // function to check winner
+    function checkWin() {
         for (const pattern of winPattern) {
-            console.log(pattern)
+            const [a, b, c] = pattern;
+        if (board[a] === board[b] &&
+            board [b] === board[c]) {
+            console.log(`${currentPlayer} is the winner`)
+        } else {
+            null
         }
-    }
+    }}
 
     // function to switch player
     function switchPlayer() {
         currentPlayer = (currentPlayer === "X") ? "O" : "X"
     }
 
-
+    // function reset game
+    function reset() {
+        board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        currentPlayer = "X";
+    }
 
 
     </script>
