@@ -34,7 +34,6 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
     ];
 
     // function player to move
-
     function move(num) {
         if ( num < 0 || num > 8 ||
             board[num] === 'X' ||
@@ -45,19 +44,6 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
         }
         board[num] = currentPlayer;
     }
-
-
-
-    // function play(position) {
-    //     if (position >= 0 && position <= 8 &&
-    //         position !== 'X' && position !=='O') 
-    //         {
-    //             board[position] = currentPlayer;
-    //         } else {
-    //             console.log('Enter between 0-8')
-    //         return
-    //     }
-    // }
 
     // function to check winner
     function checkWin() {
@@ -70,6 +56,15 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
             null
         }
     }}
+
+    function checkDraw() {
+        if (board.every(b => b === 'X' || b === 'O')) {
+            console.log('Its a draw!')
+            return
+        } else {
+            null
+        }
+    }
 
     // function to switch player
     function switchPlayer() {
