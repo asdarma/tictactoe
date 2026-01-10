@@ -18,11 +18,11 @@
     // function to show the board
         function showBoard() {
             console.log(`
-${board[0]} | ${board[1]} | ${board[2]}
+${board[0]}  |  ${board[1]}  |  ${board[2]}
 
-${board[3]} | ${board[4]} | ${board[5]}
+${board[3]}  |  ${board[4]}  |  ${board[5]}
 
-${board[6]} | ${board[7]} | ${board[8]}
+${board[6]}  |  ${board[7]}  |  ${board[8]}
             `)
         }
     
@@ -34,9 +34,30 @@ ${board[6]} | ${board[7]} | ${board[8]}
     ];
 
     // function player to move
-    function play(position) {
-        board[position] = currentPlayer;
+
+    function move(num) {
+        if ( num < 0 || num > 8 ||
+            board[num] === 'X' ||
+            board[num] === 'O'
+        ) {
+            console.log('Invalid move!')
+            return;                         // important!
+        }
+        board[num] = currentPlayer;
     }
+
+
+
+    // function play(position) {
+    //     if (position >= 0 && position <= 8 &&
+    //         position !== 'X' && position !=='O') 
+    //         {
+    //             board[position] = currentPlayer;
+    //         } else {
+    //             console.log('Enter between 0-8')
+    //         return
+    //     }
+    // }
 
     // function to check winner
     function checkWin() {
@@ -60,6 +81,7 @@ ${board[6]} | ${board[7]} | ${board[8]}
         board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
         currentPlayer = "X";
     }
+
 
 
     </script>
