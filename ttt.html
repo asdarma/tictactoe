@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project: Tic Tac Toe</title>
+    <title>Playground to try TicTacToe's IIFEs</title>
 </head>
 <body>
     <script>
+/* PSEUDOCODE
 
-// initial setup to work in console first
+1. play()() : only method - move()
+    - reset()
+    - showBoard()
+2. move(num) 
+    - checkWin()
+    - checkDraw()
+    - switchplayer()
+3. once Win or Draw
+    - reset()
+*/
 
-    // gameboard consist of 9 blocks (9 position)
+const tictactoe = (function play(){
+
     let board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
     let currentPlayer = "X";
 
-    // function to show the board
-        function showBoard() {
+    function showBoard() {
             console.log(`
 ${board[0]}  |  ${board[1]}  |  ${board[2]}
 
@@ -25,28 +34,25 @@ ${board[3]}  |  ${board[4]}  |  ${board[5]}
 ${board[6]}  |  ${board[7]}  |  ${board[8]}
             `)
         }
-    
-    // winning pattern
-    const winPattern = [
-        [0,1,2], [3,4,5], [6,7,8],
-        [0,3,6], [1,4,7], [2,5,8],
-        [0,4,8], [2,4,6]
-    ];
 
-    // function player to move
-    function move(num) {
+        function move(num) {
         if ( num < 0 || num > 8 ||
             board[num] === 'X' ||
             board[num] === 'O'
         ) {
             console.log('Invalid move!')
-            return;                         // important!
+            return;
         }
         board[num] = currentPlayer;
-    }
+}
 
-    // function to check winner
-    function checkWin() {
+        const winPattern = [
+        [0,1,2], [3,4,5], [6,7,8],
+        [0,3,6], [1,4,7], [2,5,8],
+        [0,4,8], [2,4,6]
+    ];
+
+        function checkWin() {
         for (const pattern of winPattern) {
             const [a, b, c] = pattern;
         if (board[a] === board[b] &&
@@ -68,32 +74,28 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
         }
     }
 
-    // function to switch player
     function switchPlayer() {
         currentPlayer = (currentPlayer === "X") ? "O" : "X"
     }
 
-    // function reset game
     function reset() {
         board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
         currentPlayer = "X";
     }
 
+    reset()
+    showBoard();
 
-/* PSEUDOCODE
+    return {
+        move,
+        reset
+    }
+})();
 
-1. play()()
-    - reset()
-    - showBoard()
-2. move(num) 
-    - checkWin()
-    - checkDraw()
-    - switchplayer()
-3. once Win or Draw
-    - reset()
-*/
+
 
 
     </script>
+    
 </body>
 </html>
