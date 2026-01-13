@@ -20,7 +20,7 @@
     - reset()
 */
 
-const tictactoe = (function play(){
+const tictactoe = (function(){
 
     let board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
     let currentPlayer = "X";
@@ -44,13 +44,13 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
             return;
         }
         board[num] = currentPlayer;
-}
+        }
 
         const winPattern = [
         [0,1,2], [3,4,5], [6,7,8],
         [0,3,6], [1,4,7], [2,5,8],
         [0,4,8], [2,4,6]
-    ];
+        ];
 
         function checkWin() {
         for (const pattern of winPattern) {
@@ -62,9 +62,9 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
             null
             reset()
         }
-    }}
+        }}
 
-    function checkDraw() {
+        function checkDraw() {
         if (board.every(b => b === 'X' || b === 'O')) {
             console.log('Its a draw!')
             return
@@ -72,16 +72,16 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
             null
             reset()
         }
-    }
+        }
 
-    function switchPlayer() {
+        function switchPlayer() {
         currentPlayer = (currentPlayer === "X") ? "O" : "X"
-    }
+        }
 
-    function reset() {
+        function reset() {
         board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
         currentPlayer = "X";
-    }
+        }
 
     reset()
     showBoard();
