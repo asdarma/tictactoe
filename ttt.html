@@ -22,8 +22,8 @@
 
 const tictactoe = (function(){
 
-    let board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    let currentPlayer = "X";
+    let board;
+    let currentPlayer;
 
     function showBoard() {
             console.log(`
@@ -35,7 +35,7 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
             `)
         }
 
-        function move(num) {
+        function moveTo(num) {
         if ( num < 0 || num > 8 ||
             board[num] === 'X' ||
             board[num] === 'O'
@@ -55,39 +55,41 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
         function checkWin() {
         for (const pattern of winPattern) {
             const [a, b, c] = pattern;
-        if (board[a] === board[b] &&
-            board [b] === board[c]) {
-            console.log(`${currentPlayer} is the winner`)
-        } else {
-            null
-            reset()
+            if (board[a] === board[b] &&
+                board [b] === board[c]) {
+                console.log(`${currentPlayer} is the winner`)
+                reset()
+                return
+            } else {
+                null
+                }
+            }
         }
-        }}
 
         function checkDraw() {
         if (board.every(b => b === 'X' || b === 'O')) {
             console.log('Its a draw!')
+            reset()
             return
         } else {
             null
-            reset()
-        }
+            }
         }
 
         function switchPlayer() {
-        currentPlayer = (currentPlayer === "X") ? "O" : "X"
+            currentPlayer = (currentPlayer === "X") ? "O" : "X"
         }
 
         function reset() {
-        board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-        currentPlayer = "X";
+            board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+            currentPlayer = "X";
         }
 
     reset()
     showBoard();
 
     return {
-        move,
+        moveTo,
         reset
     }
 })();
