@@ -20,12 +20,19 @@
     - reset()
 */
 
-const tictactoe = (function(){
+const tic = (function(){
 
+    // declare
     let board;
     let currentPlayer;
+    const winPattern = [
+        [0,1,2], [3,4,5], [6,7,8],
+        [0,3,6], [1,4,7], [2,5,8],
+        [0,4,8], [2,4,6]
+        ];
 
-    function showBoard() {
+    // functions
+        function showBoard() {
             console.log(`
 ${board[0]}  |  ${board[1]}  |  ${board[2]}
 
@@ -35,31 +42,40 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
             `)
         }
 
-        function moveTo(num) {
-        if ( num < 0 || num > 8 ||
+        function play(num) {
+            if ( num < 0 || num > 8 ||
             board[num] === 'X' ||
             board[num] === 'O'
-        ) {
+        )   {
             console.log('Invalid move!')
-            return;
+            return
+            }
+        moveTo(num)
+        showBoard()
+        switchPlayer()
+
+            if (checkWin()) {
+                console.log('The winner is ')
+                console.log('Please reset the game')
+            }
+            if (checkDraw()) {
+                console.log('Its a draw game')
+                console.log('Please reset the game')
+            }
+
         }
+
+        function moveTo(num) {
         board[num] = currentPlayer;
         }
 
-        const winPattern = [
-        [0,1,2], [3,4,5], [6,7,8],
-        [0,3,6], [1,4,7], [2,5,8],
-        [0,4,8], [2,4,6]
-        ];
-
+        
         function checkWin() {
         for (const pattern of winPattern) {
             const [a, b, c] = pattern;
             if (board[a] === board[b] &&
                 board [b] === board[c]) {
-                console.log(`${currentPlayer} is the winner`)
-                reset()
-                return
+                return board[a]
             } else {
                 null
                 }
@@ -68,8 +84,6 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
 
         function checkDraw() {
         if (board.every(b => b === 'X' || b === 'O')) {
-            console.log('Its a draw!')
-            reset()
             return
         } else {
             null
@@ -83,15 +97,15 @@ ${board[6]}  |  ${board[7]}  |  ${board[8]}
         function reset() {
             board = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
             currentPlayer = "X";
+            showBoard()
         }
 
     reset()
-    showBoard();
 
     return {
-        moveTo,
+        play,
         reset
-    }
+        }
 })();
 
 
