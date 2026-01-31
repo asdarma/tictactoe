@@ -1,6 +1,6 @@
 // DOM
 boardDiv = document.getElementById('boardDiv');
-
+statusDiv = document.getElementById('statusDiv');
 
 const ttt = (function() {
 
@@ -23,23 +23,25 @@ ${board[3]}  |  ${board[4]}  |  ${board[5]}
 ${board[6]}  |  ${board[7]}  |  ${board[8]}
             `)
 
+
 // show dynamic board
 boardDiv.innerHTML = `
-<div class='cell'>${board[0]}</div>
-<div class='cell'>${board[1]}</div>
-<div class='cell'>${board[2]}</div>
-<div class='cell'>${board[3]}</div>
-<div class='cell'>${board[4]}</div>
-<div class='cell'>${board[5]}</div>
-<div class='cell'>${board[6]}</div>
-<div class='cell'>${board[7]}</div>
-<div class='cell'>${board[8]}</div>
+<div class='cell' onclick=ttt.play(0)>${board[0]}</div>
+<div class='cell' onclick=ttt.play(1)>${board[1]}</div>
+<div class='cell' onclick=ttt.play(2)>${board[2]}</div>
+<div class='cell' onclick=ttt.play(3)>${board[3]}</div>
+<div class='cell' onclick=ttt.play(4)>${board[4]}</div>
+<div class='cell' onclick=ttt.play(5)>${board[5]}</div>
+<div class='cell' onclick=ttt.play(6)>${board[6]}</div>
+<div class='cell' onclick=ttt.play(7)>${board[7]}</div>
+<div class='cell' onclick=ttt.play(8)>${board[8]}</div>
 `
 
         }
     
     function play(num) {
         if (gameOver) {
+            statusDiv.innerHTML = `The game is Over. Please reset`
             console.log('The game is Over. Please reset')
             return;
         }
@@ -59,6 +61,7 @@ boardDiv.innerHTML = `
             }
 
             if (checkDraw()) {
+                statusDiv.innerHTML = `It's a Draw game!`
                 console.log(`It's a Draw game!`)
                 return;
             }
@@ -74,6 +77,8 @@ boardDiv.innerHTML = `
         for (const [a, b, c] of winPattern) {
         if (board[a] === board[b] &&
             board [b] === board[c]) {
+            // show status
+            statusDiv.innerHTML = `The winner is ${currentPlayer}`
             console.log(`${currentPlayer} is the winner`)
             gameOver = true
             return;
@@ -107,20 +112,6 @@ boardDiv.innerHTML = `
     }
 
     
-})()
-
-
-/* PSEUDOCODE
-
-1. play()()
-    - reset()
-    - showBoard()
-2. move(num) 
-    - checkWin()
-    - checkDraw()
-    - switchplayer()
-3. once Win or Draw
-    - reset()
-*/
+})();
 
 
