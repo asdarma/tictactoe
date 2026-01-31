@@ -1,3 +1,6 @@
+// DOM
+boardDiv = document.getElementById('boardDiv');
+
 
 const ttt = (function() {
 
@@ -19,6 +22,20 @@ ${board[3]}  |  ${board[4]}  |  ${board[5]}
 
 ${board[6]}  |  ${board[7]}  |  ${board[8]}
             `)
+
+// show dynamic board
+boardDiv.innerHTML = `
+<div class='cell'>${board[0]}</div>
+<div class='cell'>${board[1]}</div>
+<div class='cell'>${board[2]}</div>
+<div class='cell'>${board[3]}</div>
+<div class='cell'>${board[4]}</div>
+<div class='cell'>${board[5]}</div>
+<div class='cell'>${board[6]}</div>
+<div class='cell'>${board[7]}</div>
+<div class='cell'>${board[8]}</div>
+`
+
         }
     
     function play(num) {

@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin: 0;
+    background-color: lightgray;
+}
+
+#boardDiv {
+    width: 301px;
+    height: 301px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    width: calc(97% / 3);
+    height: calc(97% / 3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    border: 0.08px solid black;
+}
