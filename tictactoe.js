@@ -1,6 +1,7 @@
 // DOM
 boardDiv = document.getElementById('boardDiv');
 statusDiv = document.getElementById('statusDiv');
+resetBtn = document.getElementById('resetBtn');
 
 const ttt = (function() {
 
