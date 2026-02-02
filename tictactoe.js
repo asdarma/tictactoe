@@ -2,6 +2,7 @@
 boardDiv = document.getElementById('boardDiv');
 statusDiv = document.getElementById('statusDiv');
 resetBtn = document.getElementById('resetBtn');
+warningDiv = document.getElementById('warningDiv')
 
 const ttt = (function() {
 
@@ -42,7 +43,7 @@ boardDiv.innerHTML = `
     
     function play(num) {
         if (gameOver) {
-            statusDiv.innerHTML = `The game is Over. Please reset`
+            warningDiv.innerHTML = `The game is Over. Please reset`
             console.log('The game is Over. Please reset')
             return;
         }
@@ -103,6 +104,9 @@ boardDiv.innerHTML = `
         currentPlayer = "X";
         gameOver = false;
         showBoard()
+        statusDiv.innerHTML = ''
+        warningDiv.innerHTML = ''
+        
     }
 
     reset()
